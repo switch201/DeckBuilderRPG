@@ -1,0 +1,9 @@
+{
+    "id": "merchant_counter",
+    "name": "Merchant's Counter",
+    "description": "A sturdy wooden counter with a polished surface. Various trinkets and goods are displayed neatly upon it.",
+    "type": "scenery",
+    "isObstructing": true,
+    "interactionIds": ["examine", "trade"],
+    "tags": ["furniture", "commerce"]
+} 

@@ -1,0 +1,9 @@
+{
+    "id": "stab",
+    "name": "Stab",
+    "description": "A quick thrust attack",
+    "type": "attack",
+    "energyCost": 1,
+    "effectIds": ["basic_damage"],
+    "tags": ["melee", "piercing"]
+} 

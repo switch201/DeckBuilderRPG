@@ -1,0 +1,16 @@
+---
+description: Overworld
+globs: 
+alwaysApply: false
+---
+# The overworld gameplay consists from area to area similar to a text based adventure
+# When combat is triggered the game switches to Combat mode
+# the game will need to resolve things that happened in combat mode (like removing character that died) when combat is done
+# not all rooms or areas will have combat and the player can interact with the world in many different ways
+# the wolrd is filled with many different things and items and almost all of it can be interacted with in some way
+# the world is filled with NPCs with both freindly and hostile. they have different thoughts and motives
+# These are Player Actions that can be done while in the overworld and need to be something the user can interact with. Try to avoid making the player type the commands.
+    # Go to Room: Move to a connecting room
+    # Inspect thing: get description of a game object
+    # Take thing: add item to inventory
+    # Attack thing: attack something

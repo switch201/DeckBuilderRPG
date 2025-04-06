@@ -1,0 +1,9 @@
+{
+    "id": "parry",
+    "name": "Parry",
+    "description": "Defend against an incoming attack and counter",
+    "type": "defense",
+    "energyCost": 1,
+    "effectIds": ["basic_block", "basic_counter"],
+    "tags": ["melee", "defensive", "counter"]
+} 

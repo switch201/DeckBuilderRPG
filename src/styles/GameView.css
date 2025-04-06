@@ -1,0 +1,362 @@
+.game-view {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.game-view.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    font-size: 1.2em;
+    color: #666;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fee;
+    border: 1px solid #fcc;
+    border-radius: 5px;
+    color: #c00;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.error-message button {
+    padding: 5px 10px;
+    background-color: #c00;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.error-message button:hover {
+    background-color: #a00;
+}
+
+.room-info {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+.room-info h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.room-exits {
+    margin-bottom: 20px;
+}
+
+.exit-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.exit-buttons button {
+    padding: 8px 16px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.exit-buttons button:hover:not(:disabled) {
+    background-color: #357abd;
+}
+
+.exit-buttons button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.object-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.object-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.object-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.object-actions button {
+    padding: 5px 10px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.object-actions button:hover:not(:disabled) {
+    background-color: #5a6268;
+}
+
+.object-actions button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.inspection-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    z-index: 1000;
+}
+
+.inspection-panel h3 {
+    margin-top: 0;
+}
+
+.inspection-panel button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.inspection-panel button:hover:not(:disabled) {
+    background-color: #c82333;
+}
+
+.inspection-panel button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.object-stats {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.inventory {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.room-npcs {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.npc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.npc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.npc-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.npc-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.npc-type {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    text-transform: capitalize;
+}
+
+.npc-type:is([class*="merchant"]) {
+    background-color: #4a90e2;
+    color: #ffffff;
+}
+
+.npc-type:is([class*="enemy"]) {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.npc-type:is([class*="quest_giver"]) {
+    background-color: #ffd700;
+    color: #000000;
+}
+
+.npc-type:is([class*="neutral"]) {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.npc-level {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.npc-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.npc-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #6c757d;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.npc-actions button:hover:not(:disabled) {
+    background-color: #5a6268;
+}
+
+.npc-actions button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.npc-stats {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.combat-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.combat-stats p {
+    margin: 0;
+    color: #666;
+}
+
+/* Game layout with sidebar */
+.game-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+.game-main-area {
+    flex: 1;
+    min-width: 0; /* Allow this to shrink if needed */
+}
+
+.game-sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Mini Map styles */
+.mini-map-container {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.mini-map-container h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #ddd;
+}
+
+.mini-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+    }
+    
+    .game-sidebar {
+        width: 100%;
+    }
+    
+    .mini-map {
+        max-width: 100%;
+        overflow: auto;
+    }
+} 

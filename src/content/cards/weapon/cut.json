@@ -1,0 +1,9 @@
+{
+    "id": "cut",
+    "name": "Cut",
+    "description": "A sweeping slash attack",
+    "type": "attack",
+    "energyCost": 2,
+    "effectIds": ["bleeding_damage"],
+    "tags": ["melee", "slashing"]
+} 

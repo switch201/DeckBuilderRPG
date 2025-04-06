@@ -1,0 +1,10 @@
+{
+    "id": "gain_movement",
+    "type": "buff",
+    "name": "Gain Movement",
+    "description": "Increases movement speed",
+    "value": 2,
+    "target": "self",
+    "properties": ["temporary"],
+    "tags": ["movement", "speed"]
+} 

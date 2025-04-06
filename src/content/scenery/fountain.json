@@ -1,0 +1,9 @@
+{
+    "id": "fountain",
+    "name": "Stone Fountain",
+    "description": "A beautiful stone fountain with clear water cascading down its tiers. Some coins glint at the bottom.",
+    "type": "scenery",
+    "isObstructing": true,
+    "interactionIds": ["examine", "use"],
+    "tags": ["water_source", "decorative"]
+} 

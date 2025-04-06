@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Favor Types over interfaces
+# Always make sure everything that can be typed is typed
+# Never use the `any` keyword
+# The only I/O boundry should be when reading from the JSON files. Use `Record<string, unknown>` and typegaurds when converting into game objects
+# extract till you drop

@@ -1,0 +1,40 @@
+---
+description: Technical Design and Archetecture
+globs: 
+alwaysApply: false
+---
+# When organizing and writing files for this game there should be a clear seperation of concerns, and this should be represented in the folder structure and design of the files themselves for this app.
+
+# The concerns are: Content, User Interface, Rules Engine, Game Objects, and Game State
+
+# Content:
+    # The primary concern of the content folder is to hold the static content the game uses to instantiate various game objects.
+    # There should be a Content folder at the root level of the project
+    # this folder should contain JSON representation of game objects
+    # when the game is run and as needed, the game should instantiate things like enemies, items, etc. from things in this directory
+    # the idea is for this game to be modable and a key part of that will be via reading files from the content folder.
+    # The content folder drives all instances of the game from the world layout to the 
+
+# User Interface:
+    # The primary Concern of the User Interface is to take human input via clicks, typing etc, and translate that into a game action to be interpreted by the Rules Engine.
+    # Some actions may be a composition of smaller actions like click, drag and drop. UI context should detemrine what the intent is of the player.
+    # This should use react and have the look and feel of a video game as much as possible.
+    # The design of things should be intuative and self explanintory rather than requiring documentation or explenation.
+    # The User Interface Reads the game state in order to show the user what is happening in the game in various ways
+
+# Rules Engine
+    # The primary concern of the Rules Engine is to take the mapped player input from the User Interface and validate the action, and if valid pas intructions onto the Game State Layer.
+    # The Rules Engine should let the player know when they are doing something that is not allowed (for exampe attempting to play a card without the required resources)
+    # The Rules Engine should be the only layer able to modify gamestate outside of custom developer tools. from a design perspective all user actions should run through the Rules Engine first
+
+# Game Objects
+    # The game Objects hold the generic class defentions for the various game objects in play.
+    # Things that live in the wolrd of the game are all game objects
+    # Game object defenitions should be classes.
+    # game objects are instantiated via Content in the Content folder
+
+# Game State
+    # This layer is responsible for manipulating and persisting the game state.
+    # This layer does no care about the rules of the game
+    # This layer either reads or writes game state.
+    # this layer should error when given an imposible mutation.

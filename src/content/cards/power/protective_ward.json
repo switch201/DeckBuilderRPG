@@ -1,0 +1,9 @@
+{
+    "id": "protective_ward",
+    "name": "Protective Ward",
+    "description": "Create a magical barrier that protects from harm",
+    "type": "power",
+    "energyCost": 2,
+    "effectIds": ["ward_defense", "ward_resistance"],
+    "tags": ["defensive", "magic", "support", "ward"]
+} 

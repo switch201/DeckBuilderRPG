@@ -1,0 +1,9 @@
+{
+    "id": "dodge",
+    "name": "Dodge",
+    "description": "Quickly move to avoid an incoming attack",
+    "type": "skill",
+    "energyCost": 1,
+    "effectIds": ["gain_evasion", "gain_defense"],
+    "tags": ["defensive", "movement"]
+} 

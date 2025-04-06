@@ -1,0 +1,26 @@
+{
+    "id": "wandering_trader",
+    "name": "Wandering Trader",
+    "description": "A well-traveled merchant who knows how to defend themselves",
+    "type": "merchant",
+    "behavior": "defensive",
+    "stats": {
+        "health": 30,
+        "energy": 2,
+        "strength": 4,
+        "defense": 8
+    },
+    "level": 3,
+    "cardIds": [
+        "parry",
+        "dodge",
+        "smoke_bomb",
+        "quick_escape"
+    ],
+    "tags": [
+        "merchant",
+        "traveler",
+        "defensive"
+    ],
+    "gold": 500
+} 

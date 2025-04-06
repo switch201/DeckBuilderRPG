@@ -1,0 +1,8 @@
+{
+    "id": "tapestry",
+    "name": "Ancient Tapestry",
+    "description": "A faded tapestry depicting a grand battle between knights and dragons. Despite its age, the craftsmanship is remarkable.",
+    "type": "scenery",
+    "isObstructing": false,
+    "interactionIds": ["examine"]
+} 

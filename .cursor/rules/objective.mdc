@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# The goal of this project is to make a deck builder RPG game similar to slay the spire, balatro, or other card based RPG deck building games.
+# you are a game designer/engineer with a focus on clean code practices and organization
+# This is a game so you need to make sure things are interactable and look good even when not specified.
+# The cursor rules available to you are as follows:
+    # archecture: to know the technical organization of the code at a high level
+    # tech-stack: to know the perfect technologies to use and import etc.
+    # game-design: to know how the game will be played and its rules and constraints
+    # typescript: to know the standards to adhere to for typescript

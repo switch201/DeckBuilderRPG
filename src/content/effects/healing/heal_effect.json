@@ -1,0 +1,10 @@
+{
+    "id": "heal_effect",
+    "name": "Heal",
+    "description": "Restores 5 health points.",
+    "type": "heal",
+    "value": 5,
+    "target": "single",
+    "properties": ["restore_health"],
+    "tags": ["heal", "beneficial"]
+} 

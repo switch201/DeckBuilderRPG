@@ -1,0 +1,9 @@
+{
+    "id": "quick_escape",
+    "name": "Quick Escape",
+    "description": "Quickly move away from danger",
+    "type": "skill",
+    "energyCost": 1,
+    "effectIds": ["gain_movement", "gain_defense"],
+    "tags": ["movement", "defensive", "escape"]
+} 

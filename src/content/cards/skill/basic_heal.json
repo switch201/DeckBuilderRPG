@@ -1,0 +1,9 @@
+{
+    "id": "basic_heal",
+    "name": "Basic Heal",
+    "description": "A simple healing action that restores a small amount of health.",
+    "type": "skill",
+    "energyCost": 1,
+    "effectIds": ["heal_effect"],
+    "tags": ["heal", "basic"]
+} 

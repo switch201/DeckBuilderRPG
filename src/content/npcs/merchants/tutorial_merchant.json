@@ -1,0 +1,17 @@
+{
+    "id": "tutorial_merchant",
+    "name": "Friendly Merchant",
+    "description": "A cheerful merchant with a warm smile. They seem eager to help newcomers get started on their adventure.",
+    "type": "merchant",
+    "behavior": "supportive",
+    "stats": {
+        "health": 20,
+        "energy": 10,
+        "strength": 5,
+        "defense": 5
+    },
+    "level": 1,
+    "cardIds": ["basic_trade", "basic_heal"],
+    "tags": ["tutorial", "merchant", "friendly"],
+    "gold": 100
+} 

@@ -1,0 +1,9 @@
+{
+    "id": "bless",
+    "name": "Bless",
+    "description": "Bestow a blessing that enhances abilities",
+    "type": "power",
+    "energyCost": 2,
+    "effectIds": ["bless_strength", "bless_defense"],
+    "tags": ["buff", "support", "magic", "divine"]
+} 

@@ -1,0 +1,9 @@
+{
+    "id": "smoke_bomb",
+    "name": "Smoke Bomb",
+    "description": "Create a cloud of smoke to escape or disorient enemies",
+    "type": "skill",
+    "energyCost": 1,
+    "effectIds": ["smoke_cloud", "gain_evasion"],
+    "tags": ["utility", "escape", "defensive"]
+} 

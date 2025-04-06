@@ -1,0 +1,9 @@
+{
+    "id": "fire_pit",
+    "name": "Fire Pit",
+    "description": "A crude fire pit surrounded by stones. A pot of something questionable bubbles over the flames.",
+    "type": "scenery",
+    "isObstructing": true,
+    "interactionIds": ["examine", "use"],
+    "tags": ["fire", "cooking", "light_source"]
+} 

@@ -1,0 +1,9 @@
+{
+    "id": "goblin_tent",
+    "name": "Goblin Tent",
+    "description": "A shabby tent made from mismatched pieces of cloth and leather. It smells rather unpleasant.",
+    "type": "scenery",
+    "isObstructing": true,
+    "interactionIds": ["examine", "enter"],
+    "tags": ["shelter", "goblin", "container"]
+} 

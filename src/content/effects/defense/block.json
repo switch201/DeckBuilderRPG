@@ -1,0 +1,10 @@
+{
+    "id": "basic_block",
+    "type": "defense",
+    "name": "Block",
+    "description": "Blocks incoming damage",
+    "value": 5,
+    "target": "self",
+    "properties": ["block"],
+    "tags": ["defensive"]
+} 

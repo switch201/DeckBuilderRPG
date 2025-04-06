@@ -1,0 +1,25 @@
+{
+    "id": "village_square",
+    "name": "Village Square",
+    "description": "A peaceful village square with a central fountain. Benches and flowering plants create a serene atmosphere where villagers gather for guidance.",
+    "type": "room",
+    "areaId": "tutorial",
+    "exits": [
+        {
+            "direction": "north",
+            "targetRoomId": "hallway",
+            "isLocked": false,
+            "isHidden": false,
+            "description": "A path leads back to the main hallway."
+        },
+        {
+            "direction": "east",
+            "targetRoomId": "market_stall",
+            "isLocked": false,
+            "isHidden": false,
+            "description": "A small market stall can be seen in the distance."
+        }
+    ],
+    "objects": ["fountain", "wooden_bench", "flower_bed"],
+    "npcs": ["village_elder"]
+} 

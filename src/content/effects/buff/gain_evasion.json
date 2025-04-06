@@ -1,0 +1,10 @@
+{
+    "id": "gain_evasion",
+    "type": "buff",
+    "name": "Gain Evasion",
+    "description": "Increases your evasion chance, making you harder to hit",
+    "value": 25,
+    "target": "self",
+    "properties": ["evasion_up"],
+    "tags": ["buff", "defensive", "evasion"]
+} 

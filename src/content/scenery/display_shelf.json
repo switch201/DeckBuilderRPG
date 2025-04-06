@@ -1,0 +1,9 @@
+{
+    "id": "display_shelf",
+    "name": "Display Shelf",
+    "description": "A wooden shelf lined with exotic goods from distant lands. Colorful bottles and mysterious artifacts catch your eye.",
+    "type": "scenery",
+    "isObstructing": true,
+    "interactionIds": ["examine", "browse"],
+    "tags": ["furniture", "commerce", "storage"]
+} 

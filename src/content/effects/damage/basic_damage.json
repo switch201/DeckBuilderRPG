@@ -1,0 +1,9 @@
+{
+    "id": "basic_damage",
+    "type": "damage",
+    "name": "Basic Damage",
+    "description": "Deals direct damage to a target",
+    "value": 6,
+    "target": "single",
+    "tags": ["physical", "direct"]
+} 

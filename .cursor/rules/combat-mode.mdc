@@ -1,0 +1,13 @@
+---
+description: Combat Mode
+globs: 
+alwaysApply: false
+---
+# Combat can take place with many enemies and is based on a grid system similar to Dungens and Dragons.
+
+# Combat Loop:
+    # Draw Hand
+    # Take Actions
+    # Resolve Enemy Actions
+    # Resolve Envirnmental Actions
+    # Check for End Combat

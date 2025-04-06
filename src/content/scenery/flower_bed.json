@@ -1,0 +1,9 @@
+{
+    "id": "flower_bed",
+    "name": "Flower Bed",
+    "description": "A colorful bed of flowers tended with care. The blooms fill the air with a sweet fragrance.",
+    "type": "scenery",
+    "isObstructing": true,
+    "interactionIds": ["examine"],
+    "tags": ["nature", "decorative"]
+} 

@@ -1,0 +1,9 @@
+{
+    "id": "basic_trade",
+    "name": "Basic Trade",
+    "description": "A simple trading action that allows exchanging items with a merchant.",
+    "type": "skill",
+    "energyCost": 0,
+    "effectIds": ["trade_effect"],
+    "tags": ["trade", "basic"]
+} 

@@ -1,0 +1,9 @@
+{
+    "id": "coin_purse",
+    "name": "Coin Purse",
+    "description": "A leather coin purse sitting on the counter, jingling with the sound of coins.",
+    "type": "scenery",
+    "isObstructing": false,
+    "interactionIds": ["examine", "take"],
+    "tags": ["container", "valuable"]
+} 

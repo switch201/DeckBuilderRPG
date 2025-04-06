@@ -1,0 +1,9 @@
+{
+    "id": "goblin_rage",
+    "name": "Goblin Rage",
+    "description": "Enter a frenzied state, gaining strength but losing defense",
+    "type": "power",
+    "energyCost": 2,
+    "effectIds": ["rage_strength_buff", "rage_defense_debuff"],
+    "tags": ["goblin", "rage", "buff", "debuff"]
+} 

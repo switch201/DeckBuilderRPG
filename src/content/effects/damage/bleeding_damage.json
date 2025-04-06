@@ -1,0 +1,10 @@
+{
+    "id": "bleeding_damage",
+    "type": "damage",
+    "name": "Bleeding Strike",
+    "description": "Deals damage and applies bleeding",
+    "value": 8,
+    "target": "single",
+    "properties": ["bleeding"],
+    "tags": ["physical", "dot"]
+} 

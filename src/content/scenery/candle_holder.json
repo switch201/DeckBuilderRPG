@@ -1,0 +1,9 @@
+{
+    "id": "candle_holder",
+    "name": "Brass Candle Holder",
+    "description": "An ornate brass candle holder mounted on the wall. The candle has long since burned away.",
+    "type": "scenery",
+    "isObstructing": false,
+    "interactionIds": ["examine"],
+    "tags": ["decorative", "wall_mounted"]
+} 

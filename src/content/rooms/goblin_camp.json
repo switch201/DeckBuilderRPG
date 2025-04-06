@@ -1,0 +1,18 @@
+{
+    "id": "goblin_camp",
+    "name": "Goblin Camp",
+    "description": "A crude camp with makeshift tents and a smoking fire pit. Weapons and stolen goods are scattered about, and the air smells of roasted meat.",
+    "type": "room",
+    "areaId": "tutorial",
+    "exits": [
+        {
+            "direction": "south",
+            "targetRoomId": "hallway",
+            "isLocked": false,
+            "isHidden": true,
+            "description": "A hidden path leads back to the hallway through some dense bushes."
+        }
+    ],
+    "objects": ["fire_pit", "weapon_rack", "loot_pile", "goblin_tent"],
+    "npcs": ["goblin_warrior"]
+} 

@@ -1,0 +1,27 @@
+{
+    "id": "village_elder",
+    "name": "Village Elder",
+    "description": "A wise elder who guides adventurers and provides wisdom",
+    "type": "quest_giver",
+    "behavior": "supportive",
+    "stats": {
+        "health": 25,
+        "energy": 4,
+        "strength": 2,
+        "defense": 3
+    },
+    "level": 5,
+    "cardIds": [
+        "healing_word",
+        "bless",
+        "inspire",
+        "protective_ward"
+    ],
+    "tags": [
+        "elder",
+        "healer",
+        "wise",
+        "support"
+    ],
+    "gold": 100
+} 

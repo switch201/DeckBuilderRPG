@@ -1,0 +1,9 @@
+{
+    "id": "candle_holder",
+    "name": "Brass Candle Holder",
+    "description": "An ornate brass candle holder mounted to the wall. A half-burned candle sits within it, its flame providing gentle illumination.",
+    "type": "collectible",
+    "weight": 2,
+    "value": 10,
+    "interactionIds": ["take", "examine"]
+} 

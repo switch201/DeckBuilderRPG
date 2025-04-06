@@ -1,0 +1,9 @@
+{
+    "id": "torch",
+    "name": "Wall Torch",
+    "description": "A burning torch that provides warm light to the room.",
+    "type": "collectible",
+    "weight": 1,
+    "value": 5,
+    "interactionIds": ["take", "examine"]
+} 

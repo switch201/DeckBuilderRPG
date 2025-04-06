@@ -1,0 +1,18 @@
+{
+    "id": "start",
+    "name": "Starting Room",
+    "description": "A cozy room with stone walls and a wooden floor. A torch flickers on the wall, casting dancing shadows.",
+    "type": "room",
+    "areaId": "tutorial",
+    "exits": [
+        {
+            "direction": "north",
+            "targetRoomId": "hallway",
+            "isLocked": false,
+            "isHidden": false,
+            "description": "A wooden door leads to a hallway."
+        }
+    ],
+    "objects": ["torch", "chest"],
+    "npcs": ["tutorial_merchant"]
+} 

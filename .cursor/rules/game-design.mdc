@@ -1,0 +1,17 @@
+---
+description: Game Design
+globs: 
+alwaysApply: false
+---
+# The Game can be thought of as 2 modes: Overworld mode and Combat Mode
+
+# The player has a deck of cards based on their items and abilities
+# The player can equip armor or weapons
+# The player can level up and unlock new abilities
+# All Items and Abilities translate to cards that are in the players deck.
+# Its good to have lots of varaibles and detail when modeling things. Think similar to Dungens and Dragons level complexity
+
+# Each Mode has its own rules file to follow
+    # `combat-mode.mdc`
+    # `overworld-mode.mdc`
+

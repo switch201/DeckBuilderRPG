@@ -1,0 +1,9 @@
+{
+    "id": "torch",
+    "name": "Wall Torch",
+    "description": "A flickering torch mounted on the wall, providing warm light to the room.",
+    "type": "scenery",
+    "isObstructing": false,
+    "interactionIds": ["examine", "take"],
+    "tags": ["light_source", "wall_mounted"]
+} 

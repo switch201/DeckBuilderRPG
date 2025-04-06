@@ -1,0 +1,18 @@
+{
+    "id": "iron_sword",
+    "name": "Iron Sword",
+    "description": "A basic but reliable iron sword. Well-balanced and sharp.",
+    "type": "weapon",
+    "rarity": "common",
+    "stats": {
+        "damage": 5,
+        "durability": 100,
+        "weight": 3
+    },
+    "equipSlot": "mainHand",
+    "cardIds": ["stab", "cut", "parry"],
+    "requirements": {
+        "strength": 5
+    },
+    "tags": ["sword", "metal", "weapon", "melee"]
+} 

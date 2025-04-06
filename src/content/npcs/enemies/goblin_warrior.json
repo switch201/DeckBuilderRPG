@@ -1,0 +1,26 @@
+{
+    "id": "goblin_warrior",
+    "name": "Goblin Warrior",
+    "description": "A fierce goblin warrior wielding crude but effective weapons",
+    "type": "enemy",
+    "behavior": "aggressive",
+    "stats": {
+        "health": 45,
+        "energy": 3,
+        "strength": 8,
+        "defense": 5
+    },
+    "level": 2,
+    "cardIds": [
+        "cut",
+        "stab",
+        "parry",
+        "goblin_rage"
+    ],
+    "tags": [
+        "goblin",
+        "warrior",
+        "melee"
+    ],
+    "gold": 25
+} 

@@ -1,0 +1,93 @@
+/* MiniMap specific styles */
+.mini-map-container {
+    position: relative;
+}
+
+.mini-map {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.map-node {
+    font-family: monospace;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+}
+
+.map-node:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    z-index: 10;
+}
+
+.map-node.current {
+    z-index: 5;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.room-connection {
+    opacity: 0.7;
+}
+
+/* Tooltip for room name on hover */
+.map-node-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 100;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Pulse animation for current room */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+/* Map legend */
+.mini-map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #555;
+}
+
+.legend-color.visited {
+    background-color: #2a4d69;
+}
+
+.legend-color.discovered {
+    background-color: #2a3d50;
+}
+
+.legend-color.current {
+    background-color: #4b86b4;
+} 

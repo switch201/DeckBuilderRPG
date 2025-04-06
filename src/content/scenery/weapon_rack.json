@@ -1,0 +1,9 @@
+{
+    "id": "weapon_rack",
+    "name": "Weapon Rack",
+    "description": "A crude wooden rack holding various rusty weapons. Most look poorly maintained but still dangerous.",
+    "type": "scenery",
+    "isObstructing": true,
+    "interactionIds": ["examine", "browse"],
+    "tags": ["storage", "weapons", "combat"]
+} 

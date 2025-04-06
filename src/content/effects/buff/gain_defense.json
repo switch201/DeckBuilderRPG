@@ -1,0 +1,10 @@
+{
+    "id": "gain_defense",
+    "type": "buff",
+    "name": "Gain Defense",
+    "description": "Increases defense against attacks",
+    "value": 5,
+    "target": "self",
+    "properties": ["temporary", "stackable"],
+    "tags": ["defense", "protective"]
+} 

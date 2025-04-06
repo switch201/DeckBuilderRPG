@@ -1,0 +1,50 @@
+{
+    "examine": {
+        "name": "Examine",
+        "description": "Look closely at the object to learn more about it."
+    },
+    "take": {
+        "name": "Take",
+        "description": "Pick up the object and add it to your inventory."
+    },
+    "use": {
+        "name": "Use",
+        "description": "Use or activate the object."
+    },
+    "attack": {
+        "name": "Attack",
+        "description": "Attempt to damage or destroy the object."
+    },
+    "talk": {
+        "name": "Talk",
+        "description": "Attempt to communicate with the object or character."
+    },
+    "open": {
+        "name": "Open",
+        "description": "Try to open the object if it can be opened."
+    },
+    "close": {
+        "name": "Close",
+        "description": "Try to close the object if it can be closed."
+    },
+    "push": {
+        "name": "Push",
+        "description": "Try to move or push the object."
+    },
+    "pull": {
+        "name": "Pull",
+        "description": "Try to pull the object."
+    },
+    "trade": {
+        "name": "Trade",
+        "description": "Buy or sell items with a merchant."
+    },
+    "browse": {
+        "name": "Browse",
+        "description": "Look through available items or goods."
+    },
+    "enter": {
+        "name": "Enter",
+        "description": "Enter or go inside the object if possible."
+    }
+} 

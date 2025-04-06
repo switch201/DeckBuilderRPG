@@ -1,0 +1,18 @@
+{
+    "id": "market_stall",
+    "name": "Market Stall",
+    "description": "A small but well-organized market stall, filled with exotic goods and curious trinkets from far-off lands.",
+    "type": "room",
+    "areaId": "tutorial",
+    "exits": [
+        {
+            "direction": "west",
+            "targetRoomId": "hallway",
+            "isLocked": false,
+            "isHidden": false,
+            "description": "The hallway leads back to the main corridor."
+        }
+    ],
+    "objects": ["merchant_counter", "display_shelf", "coin_purse"],
+    "npcs": ["wandering_trader"]
+} 

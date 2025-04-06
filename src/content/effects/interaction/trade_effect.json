@@ -1,0 +1,10 @@
+{
+    "id": "trade_effect",
+    "name": "Trade",
+    "description": "Opens a trading interface with the merchant.",
+    "type": "trade",
+    "value": 0,
+    "target": "self",
+    "properties": ["open_trade"],
+    "tags": ["trade", "interaction"]
+} 

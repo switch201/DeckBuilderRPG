@@ -1,0 +1,9 @@
+{
+    "id": "inspire",
+    "name": "Inspire",
+    "description": "Inspire allies with words of courage",
+    "type": "skill",
+    "energyCost": 1,
+    "effectIds": ["gain_energy", "gain_strength"],
+    "tags": ["support", "buff", "mental"]
+} 

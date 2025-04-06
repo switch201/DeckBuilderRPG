@@ -1,0 +1,39 @@
+{
+    "id": "hallway",
+    "name": "Dimly Lit Hallway",
+    "description": "A long stone hallway stretches before you. Ancient tapestries line the walls, their colors faded with age. The air is cool and still.",
+    "type": "room",
+    "areaId": "tutorial",
+    "exits": [
+        {
+            "direction": "south",
+            "targetRoomId": "start",
+            "isLocked": false,
+            "isHidden": false,
+            "description": "The wooden door leads back to the starting room."
+        },
+        {
+            "direction": "east",
+            "targetRoomId": "market_stall",
+            "isLocked": false,
+            "isHidden": false,
+            "description": "The sound of commerce and bartering can be heard from a nearby market stall."
+        },
+        {
+            "direction": "north",
+            "targetRoomId": "goblin_camp",
+            "isLocked": false,
+            "isHidden": true,
+            "description": "A barely noticeable path leads into some dense bushes."
+        },
+        {
+            "direction": "west",
+            "targetRoomId": "village_square",
+            "isLocked": false,
+            "isHidden": false,
+            "description": "The path opens up to what appears to be a peaceful village square."
+        }
+    ],
+    "objects": ["tapestry", "candle_holder"],
+    "npcs": []
+} 

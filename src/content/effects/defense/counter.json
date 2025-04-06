@@ -1,0 +1,11 @@
+{
+    "id": "basic_counter",
+    "type": "damage",
+    "name": "Counter Attack",
+    "description": "Counter-attacks when hit",
+    "value": 3,
+    "target": "single",
+    "properties": ["counter"],
+    "tags": ["defensive", "reactive"],
+    "condition": "whenAttacked"
+} 

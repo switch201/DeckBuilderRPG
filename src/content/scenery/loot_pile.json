@@ -1,0 +1,9 @@
+{
+    "id": "loot_pile",
+    "name": "Pile of Loot",
+    "description": "A messy pile of stolen goods and trinkets. Most items appear to be of little value.",
+    "type": "scenery",
+    "isObstructing": false,
+    "interactionIds": ["examine", "browse", "take"],
+    "tags": ["storage", "valuable", "loot"]
+} 

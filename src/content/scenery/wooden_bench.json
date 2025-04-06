@@ -1,0 +1,9 @@
+{
+    "id": "wooden_bench",
+    "name": "Wooden Bench",
+    "description": "A sturdy wooden bench worn smooth by years of use. Perfect for resting weary feet.",
+    "type": "scenery",
+    "isObstructing": true,
+    "interactionIds": ["examine", "use"],
+    "tags": ["furniture", "seating"]
+} 

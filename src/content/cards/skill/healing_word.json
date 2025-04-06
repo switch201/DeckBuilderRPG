@@ -1,0 +1,9 @@
+{
+    "id": "healing_word",
+    "name": "Healing Word",
+    "description": "Speak words of healing to restore health",
+    "type": "skill",
+    "energyCost": 1,
+    "effectIds": ["minor_heal"],
+    "tags": ["healing", "support", "magic"]
+} 
