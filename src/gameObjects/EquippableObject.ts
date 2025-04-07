@@ -1,6 +1,6 @@
 import { CollectibleObject, type CollectibleObjectProps } from './CollectibleObject';
 
-export interface EquippableObjectProps extends CollectibleObjectProps {
+export type EquippableObjectProps = CollectibleObjectProps & {
     equipSlot: string;
 }
 

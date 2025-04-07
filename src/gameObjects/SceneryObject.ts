@@ -1,6 +1,6 @@
 import { InteractiveObject, type InteractiveObjectProps } from './InteractiveObject';
 
-export interface SceneryObjectProps extends InteractiveObjectProps {
+export type SceneryObjectProps = InteractiveObjectProps & {
     isObstructing?: boolean;
 }
 

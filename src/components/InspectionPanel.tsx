@@ -3,7 +3,7 @@ import { GameObject } from '../gameObjects/GameObject';
 import { CollectibleObject } from '../gameObjects/InteractiveObject';
 import { NPC } from '../gameObjects/NPC';
 
-interface InspectionPanelProps {
+type InspectionPanelProps = {
     object: GameObject;
     onClose: () => void;
     isLoading: boolean;

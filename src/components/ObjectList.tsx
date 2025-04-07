@@ -2,7 +2,7 @@ import React from 'react';
 import { GameObject } from '../gameObjects/GameObject';
 import { CollectibleObject } from '../gameObjects/InteractiveObject';
 
-interface ObjectListProps {
+type ObjectListProps = {
     objects: readonly GameObject[];
     onInspect: (id: string) => void;
     onTake?: (id: string) => void;

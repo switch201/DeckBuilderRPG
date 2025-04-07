@@ -3,13 +3,13 @@ import { GameObject, type GameObjectProps, type GameObjectType } from './GameObj
 
 export type CardType = 'attack' | 'defense' | 'skill' | 'power';
 
-export interface CardProperties {
+export type CardProperties = {
     energyCost: number;
     effects: Effect[];
     tags: string[];
 }
 
-export interface CardProps extends GameObjectProps {
+export type CardProps = GameObjectProps & {
     cardType: CardType;
     properties: CardProperties;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ErrorMessageProps {
+type ErrorMessageProps = {
     message: string;
     onDismiss: () => void;
 }

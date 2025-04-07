@@ -4,7 +4,7 @@ import type { GameObjectData } from './BaseGameObjectFactory';
 import { CardFactory } from './CardFactory';
 import { ContentLoader } from '../content/ContentLoader';
 
-export interface NPCData extends GameObjectData {
+export type NPCData = GameObjectData & {
     behavior: NPCBehavior;
     stats: NPCStats;
     level: number;

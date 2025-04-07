@@ -4,12 +4,12 @@ import { Room } from '../gameObjects/Room';
 import type { RoomVisibility } from '../gameObjects/Room';
 import '../styles/MiniMap.css';
 
-interface MiniMapProps {
+type MiniMapProps = {
     gameState: GameState;
     onRoomClick?: (roomId: string) => void;
 }
 
-interface MapNode {
+type MapNode = {
     roomId: string;
     name: string;
     visibility: RoomVisibility;
@@ -23,14 +23,14 @@ interface MapNode {
     };
 }
 
-interface TooltipState {
+type TooltipState = {
     visible: boolean;
     x: number;
     y: number;
     text: string;
 }
 
-interface RoomPosition {
+type RoomPosition = {
     x: number;
     y: number;
 }

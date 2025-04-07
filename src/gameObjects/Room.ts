@@ -28,7 +28,7 @@ export type RoomVisibility = 'undiscovered' | 'discovered' | 'visited';
 /**
  * Represents an exit from one room to another
  */
-export interface Exit {
+export type Exit = {
     direction: Direction;
     targetRoomId: string;
     isLocked: boolean;
@@ -40,7 +40,7 @@ export interface Exit {
 /**
  * Properties for creating a Room
  */
-export interface RoomProps extends GameObjectProps {
+export type RoomProps = GameObjectProps & {
     areaId: string;
     exits?: Exit[];
     containedObjects?: GameObject[];
@@ -52,7 +52,7 @@ export interface RoomProps extends GameObjectProps {
 /**
  * Properties for connecting rooms
  */
-export interface RoomConnectionProps {
+export type RoomConnectionProps = {
     room1: Room;
     room2: Room;
     direction: Direction;

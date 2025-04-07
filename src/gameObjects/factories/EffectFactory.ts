@@ -3,7 +3,7 @@ import type { EffectType, TargetType, EffectProperties } from '../Effect';
 import { BaseGameObjectFactory } from './BaseGameObjectFactory';
 import type { GameObjectData } from './BaseGameObjectFactory';
 
-export interface EffectData extends GameObjectData {
+export type EffectData = GameObjectData & {
     type: EffectType;
     value: number;
     target: TargetType;

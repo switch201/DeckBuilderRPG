@@ -1,9 +1,9 @@
 import type { GameObject } from '../GameObject';
 
 /**
- * Base interface for game object JSON data
+ * Base type for game object JSON data
  */
-export interface GameObjectData {
+export type GameObjectData = {
     id: string;
     name: string;
     description: string;

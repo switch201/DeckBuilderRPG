@@ -5,7 +5,7 @@ import type { GameObjectData } from './BaseGameObjectFactory';
 import { EffectFactory } from './EffectFactory';
 import { ContentLoader } from '../content/ContentLoader';
 
-export interface CardData extends GameObjectData {
+export type CardData = GameObjectData & {
     type: CardType;
     energyCost: number;
     effectIds: string[];

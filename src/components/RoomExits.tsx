@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Exit } from '../gameObjects/Room';
 
-interface RoomExitsProps {
+type RoomExitsProps = {
     exits: readonly Exit[];
     onMove: (targetRoomId: string) => void;
     isLoading: boolean;

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Room } from '../gameObjects/Room';
 
-interface RoomInfoProps {
+type RoomInfoProps = {
     room: Room;
 }
 

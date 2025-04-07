@@ -1,3 +1,4 @@
+import type { Direction, Exit } from '../Room';
 import type { GameObject } from '../GameObject';
 import { Room, type RoomType } from '../Room';
 import { InteractiveObject } from '../InteractiveObject';
@@ -10,11 +11,12 @@ import { NPCFactory } from './NPCFactory';
 import type { NPCData } from './NPCFactory';
 import type { GameObjectData } from './BaseGameObjectFactory';
 import { BaseGameObjectFactory } from './BaseGameObjectFactory';
+import type { Interaction } from '../interactions/Interaction';
 
 /**
- * Interface for room JSON data
+ * Type for room JSON data
  */
-export interface RoomData extends GameObjectData {
+export type RoomData = GameObjectData & {
     areaId: string;
     exits: ExitData[];
     objects: string[];
@@ -23,9 +25,9 @@ export interface RoomData extends GameObjectData {
 }
 
 /**
- * Interface for exit JSON data
+ * Type for exit JSON data
  */
-export interface ExitData {
+export type ExitData = {
     direction: string;
     targetRoomId: string;
     isLocked: boolean;
@@ -35,17 +37,17 @@ export interface ExitData {
 }
 
 /**
- * Interface for interaction JSON data
+ * Type for interaction JSON data
  */
-export interface InteractionData {
+export type InteractionData = {
     name: string;
     description: string;
 }
 
 /**
- * Interface for object JSON data
+ * Type for object JSON data
  */
-export interface ObjectData extends GameObjectData {
+export type ObjectData = GameObjectData & {
     type: 'collectible' | 'scenery';
     weight?: number;
     value?: number;

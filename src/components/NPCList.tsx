@@ -1,7 +1,7 @@
 import React from 'react';
 import { NPC } from '../gameObjects/NPC';
 
-interface NPCListProps {
+type NPCListProps = {
     npcs: readonly NPC[];
     onInspect: (id: string) => void;
     isLoading: boolean;

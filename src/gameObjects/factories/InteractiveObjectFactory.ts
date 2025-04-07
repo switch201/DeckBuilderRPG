@@ -7,7 +7,7 @@ import { isInteractiveObjectData } from '../validation/TypeGuards';
 /**
  * JSON data for interactive objects
  */
-export interface InteractiveObjectData extends GameObjectData {
+export type InteractiveObjectData = GameObjectData & {
     interactions?: {
         name: string;
         description: string;

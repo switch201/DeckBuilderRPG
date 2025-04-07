@@ -4,7 +4,7 @@ import { BasicInteraction } from '../interactions/BasicInteraction';
 import type { EffectData } from '../factories/EffectFactory';
 import type { CardData } from '../factories/CardFactory';
 
-interface InteractionData {
+type InteractionData = {
     name: string;
     description: string;
 }

@@ -1,6 +1,6 @@
 import { InteractiveObject, type InteractiveObjectProps } from './InteractiveObject';
 
-export interface CollectibleObjectProps extends InteractiveObjectProps {
+export type CollectibleObjectProps = InteractiveObjectProps & {
     weight: number;
     value: number;
 }

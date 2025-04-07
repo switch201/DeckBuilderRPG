@@ -3,14 +3,14 @@ import { GameObject, type GameObjectProps, type GameObjectType } from './GameObj
 export type EffectType = 'damage' | 'defense' | 'buff' | 'debuff' | 'heal';
 export type TargetType = 'single' | 'all' | 'random' | 'self';
 
-export interface EffectProperties {
+export type EffectProperties = {
     value: number;
     target: TargetType;
     properties: string[];
     tags: string[];
 }
 
-export interface EffectProps extends GameObjectProps {
+export type EffectProps = GameObjectProps & {
     effectType: EffectType;
     properties: EffectProperties;
 }

@@ -1,7 +1,7 @@
 import { GameObject, type GameObjectProps, type GameObjectType } from './GameObject';
 import type { Interaction } from './interactions/Interaction';
 
-export interface InteractiveObjectProps extends GameObjectProps {}
+export type InteractiveObjectProps = GameObjectProps;
 
 /**
  * Base class for objects that can have custom interactions
@@ -57,7 +57,7 @@ export class InteractiveObject extends GameObject {
     }
 }
 
-export interface CollectibleObjectProps extends InteractiveObjectProps {
+export type CollectibleObjectProps = InteractiveObjectProps & {
     weight: number;
     value: number;
 }
@@ -108,7 +108,7 @@ export class CollectibleObject extends InteractiveObject {
     }
 }
 
-export interface EquippableObjectProps extends CollectibleObjectProps {
+export type EquippableObjectProps = CollectibleObjectProps & {
     equipSlot: string;
 }
 
@@ -157,7 +157,7 @@ export abstract class EquippableObject extends CollectibleObject {
     abstract getEquipEffects(): Record<string, number>;
 }
 
-export interface SceneryObjectProps extends InteractiveObjectProps {
+export type SceneryObjectProps = InteractiveObjectProps & {
     isObstructing?: boolean;
 }
 

@@ -3,7 +3,7 @@ export type GameObjectType = 'room' | 'scenery' | 'collectible' | 'interactive' 
 /**
  * Properties for creating a GameObject
  */
-export interface GameObjectProps {
+export type GameObjectProps = {
     id: string;
     name: string;
     description: string;

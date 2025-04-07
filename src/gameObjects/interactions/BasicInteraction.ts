@@ -3,7 +3,7 @@ import type { Interaction } from './Interaction';
 /**
  * Properties for creating a BasicInteraction
  */
-export interface BasicInteractionProps {
+export type BasicInteractionProps = {
     name: string;
     description: string;
     action?: () => void;

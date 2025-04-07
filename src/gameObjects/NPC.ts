@@ -3,14 +3,14 @@ import type { Card } from './Card';
 
 export type NPCBehavior = 'friendly' | 'neutral' | 'hostile';
 
-export interface NPCStats {
+export type NPCStats = {
     health: number;
     energy: number;
     strength: number;
     defense: number;
 }
 
-export interface NPCProps extends GameObjectProps {
+export type NPCProps = GameObjectProps & {
     behavior: NPCBehavior;
     stats: NPCStats;
     level: number;

@@ -11,7 +11,7 @@ import { ObjectList } from './ObjectList';
 import { InspectionPanel } from './InspectionPanel';
 import RoomArt from './RoomArt';
 
-interface GameViewProps {
+type GameViewProps = {
     gameState: GameState;
 }
 

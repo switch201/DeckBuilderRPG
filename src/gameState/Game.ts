@@ -10,7 +10,7 @@ export type GameMode = 'overworld' | 'combat';
 /**
  * Represents a game save state that can be serialized/deserialized
  */
-export interface GameSaveState {
+export type GameSaveState = {
     currentRoomId: string;
     visitedRoomIds: string[];
     discoveredRoomIds: string[];
