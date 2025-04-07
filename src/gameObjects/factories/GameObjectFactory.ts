@@ -1,6 +1,8 @@
 import type { GameObject } from '../GameObject';
-import { Room } from '../Room';
-import { CollectibleObject, InteractiveObject, SceneryObject } from '../InteractiveObject';
+import { Room, type RoomType } from '../Room';
+import { InteractiveObject } from '../InteractiveObject';
+import { CollectibleObject, type CollectibleObjectProps } from '../CollectibleObject';
+import { SceneryObject, type SceneryObjectProps } from '../SceneryObject';
 import { BasicInteraction } from '../interactions/BasicInteraction';
 import { ContentLoader } from '../content/ContentLoader';
 import { NPC } from '../NPC';
@@ -17,6 +19,7 @@ export interface RoomData extends GameObjectData {
     exits: ExitData[];
     objects: string[];
     npcs: string[];
+    roomType: RoomType;
 }
 
 /**
@@ -51,45 +54,29 @@ export interface ObjectData extends GameObjectData {
 }
 
 /**
- * Concrete implementation of Room
- */
-class ConcreteRoom extends Room {
-    canContainObject(obj: GameObject): boolean {
-        // Basic implementation that allows all objects except obstructing scenery
-        if (obj instanceof SceneryObject && obj.isObstructing) {
-            return false;
-        }
-        return true;
-    }
-}
-
-/**
- * Concrete implementation of CollectibleObject
- */
-class ConcreteCollectible extends CollectibleObject {
-    // No additional implementation needed as CollectibleObject has all concrete methods
-}
-
-/**
- * Concrete implementation of SceneryObject
- */
-class ConcreteScenery extends SceneryObject {
-    // No additional implementation needed as SceneryObject has all concrete methods
-}
-
-/**
  * Factory for creating rooms
  */
 export class RoomFactory extends BaseGameObjectFactory<Room, RoomData> {
+    protected validateRoomData(data: RoomData): void {
+        if (!data.roomType) throw new Error('Room data must have a roomType');
+    }
+
     async createFromJson(data: RoomData): Promise<Room> {
         this.validateBaseData(data);
+        this.validateRoomData(data);
         if (!data.areaId) throw new Error('Room data must have an areaId');
         if (!Array.isArray(data.exits)) throw new Error('Room data must have exits array');
         if (!Array.isArray(data.objects)) throw new Error('Room data must have objects array');
 
         console.log(`Creating room: ${data.id} with objects:`, data.objects);
 
-        const room = new ConcreteRoom(data.id, data.name, data.description, data.areaId);
+        const room = new Room({
+            id: data.id,
+            name: data.name,
+            description: data.description,
+            areaId: data.areaId,
+            roomType: data.roomType
+        });
 
         for (const exit of data.exits) {
             room.addExit({
@@ -124,20 +111,20 @@ export class ObjectFactory extends BaseGameObjectFactory<GameObject, ObjectData>
         let object: GameObject;
 
         if (data.type === 'collectible') {
-            object = new ConcreteCollectible(
-                data.id,
-                data.name,
-                data.description,
-                data.weight ?? 1,
-                data.value ?? 0
-            );
+            object = new CollectibleObject({
+                id: data.id,
+                name: data.name,
+                description: data.description,
+                weight: data.weight ?? 1,
+                value: data.value ?? 0
+            });
         } else {
-            object = new ConcreteScenery(
-                data.id,
-                data.name,
-                data.description,
-                data.isObstructing ?? false
-            );
+            object = new SceneryObject({
+                id: data.id,
+                name: data.name,
+                description: data.description,
+                isObstructing: data.isObstructing ?? false
+            });
         }
 
         // Process interaction references if any are defined

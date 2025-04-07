@@ -2,7 +2,7 @@
     "id": "wandering_trader",
     "name": "Wandering Trader",
     "description": "A well-traveled merchant who knows how to defend themselves",
-    "type": "merchant",
+    "npcType": "merchant",
     "behavior": "defensive",
     "stats": {
         "health": 30,

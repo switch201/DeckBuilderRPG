@@ -3,6 +3,7 @@
     "name": "Starting Room",
     "description": "A cozy room with stone walls and a wooden floor. A torch flickers on the wall, casting dancing shadows.",
     "type": "room",
+    "roomType": "start",
     "areaId": "tutorial",
     "exits": [
         {

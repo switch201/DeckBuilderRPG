@@ -1,10 +1,12 @@
-import { GameObject } from './GameObject';
+import { GameObject, type GameObjectProps, type GameObjectType } from './GameObject';
 import { NPC } from './NPC';
 
 /**
  * Represents a direction that can be used to exit a room
  */
 export type Direction = 'north' | 'south' | 'east' | 'west' | 'up' | 'down';
+
+export type RoomType = 'start' | 'hallway' | 'chamber' | 'default' | 'camp' | 'dungeon' | 'dark_alley' | 'mountain';
 
 /**
  * Maps directions to their opposite direction
@@ -36,10 +38,41 @@ export interface Exit {
 }
 
 /**
+ * Properties for creating a Room
+ */
+export interface RoomProps extends GameObjectProps {
+    areaId: string;
+    exits?: Exit[];
+    containedObjects?: GameObject[];
+    npcs?: NPC[];
+    art?: string;
+    roomType?: RoomType;
+}
+
+/**
+ * Properties for connecting rooms
+ */
+export interface RoomConnectionProps {
+    room1: Room;
+    room2: Room;
+    direction: Direction;
+    isLocked?: boolean;
+    isHidden?: boolean;
+    requiredKeyId?: string;
+    description?: string;
+}
+
+/**
  * Abstract base class for all rooms in the game.
  * Rooms can contain other game objects and have exits to other rooms.
  */
-export abstract class Room extends GameObject {
+export class Room extends GameObject {
+    get type(): GameObjectType {
+        return 'room';
+    }
+
+    private _art: string;
+    private _roomType: RoomType;
     private _exits: Exit[];
     private _containedObjects: GameObject[];
     private _npcs: NPC[];
@@ -47,22 +80,44 @@ export abstract class Room extends GameObject {
     private _isExplored: boolean;
     private _areaId: string;
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        areaId: string,
-        exits: Exit[] = [],
-        containedObjects: GameObject[] = [],
-        npcs: NPC[] = []
-    ) {
-        super(id, name, description);
-        this._exits = exits;
-        this._containedObjects = containedObjects.filter(obj => !(obj instanceof NPC));
-        this._npcs = npcs;
+    constructor(props: RoomProps) {
+        super(props);
+        this._exits = props.exits || [];
+        this._containedObjects = props.containedObjects?.filter(obj => !(obj instanceof NPC)) || [];
+        this._npcs = props.npcs || [];
         this._visibility = 'undiscovered';
         this._isExplored = false;
-        this._areaId = areaId;
+        this._areaId = props.areaId;
+        this._art = props.art || '';
+        this._roomType = props.roomType || 'default';
+    }
+
+    /**
+     * The ASCII art representation of the room
+     */
+    get art(): string {
+        return this._art;
+    }
+
+    /**
+     * Set the ASCII art representation of the room
+     */
+    set art(value: string) {
+        this._art = value;
+    }
+
+    /**
+     * The type of room (start, hallway, chamber, etc.)
+     */
+    get roomType(): RoomType {
+        return this._roomType;
+    }
+
+    /**
+     * Set the type of room
+     */
+    set roomType(value: RoomType) {
+        this._roomType = value;
     }
 
     /**
@@ -149,33 +204,25 @@ export abstract class Room extends GameObject {
     /**
      * Create a bidirectional connection between two rooms
      */
-    static connectRooms(
-        room1: Room,
-        room2: Room,
-        direction: Direction,
-        isLocked: boolean = false,
-        isHidden: boolean = false,
-        requiredKeyId?: string,
-        description?: string
-    ): void {
-        const oppositeDirection = OPPOSITE_DIRECTIONS[direction];
+    static connectRooms(props: RoomConnectionProps): void {
+        const oppositeDirection = OPPOSITE_DIRECTIONS[props.direction];
         
-        room1.addExit({
-            direction,
-            targetRoomId: room2.id,
-            isLocked,
-            isHidden,
-            requiredKeyId,
-            description
+        props.room1.addExit({
+            direction: props.direction,
+            targetRoomId: props.room2.id,
+            isLocked: props.isLocked || false,
+            isHidden: props.isHidden || false,
+            requiredKeyId: props.requiredKeyId,
+            description: props.description
         });
 
-        room2.addExit({
+        props.room2.addExit({
             direction: oppositeDirection,
-            targetRoomId: room1.id,
-            isLocked,
-            isHidden,
-            requiredKeyId,
-            description
+            targetRoomId: props.room1.id,
+            isLocked: props.isLocked || false,
+            isHidden: props.isHidden || false,
+            requiredKeyId: props.requiredKeyId,
+            description: props.description
         });
     }
 
@@ -199,6 +246,7 @@ export abstract class Room extends GameObject {
 
     /**
      * Remove a game object from the room
+     * TODO: AI Clean up
      */
     removeObject(objId: string): GameObject | undefined {
         // Try to remove from regular objects first
@@ -241,10 +289,4 @@ export abstract class Room extends GameObject {
     private hasExit(direction: Direction): boolean {
         return this._exits.some(exit => exit.direction === direction);
     }
-
-    /**
-     * Abstract method that must be implemented by concrete rooms
-     * to determine if a specific game object can be added to this room
-     */
-    abstract canContainObject(obj: GameObject): boolean;
 } 

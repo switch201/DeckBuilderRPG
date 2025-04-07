@@ -1,0 +1,10 @@
+{
+    "id": "gain_energy",
+    "type": "buff",
+    "name": "Gain Energy",
+    "description": "Provides additional energy for actions",
+    "value": 1,
+    "target": "single",
+    "properties": ["temporary", "immediate"],
+    "tags": ["energy", "buff"]
+} 

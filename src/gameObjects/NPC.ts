@@ -1,8 +1,7 @@
-import { GameObject } from './GameObject';
+import { GameObject, type GameObjectProps, type GameObjectType } from './GameObject';
 import type { Card } from './Card';
 
-export type NPCType = 'enemy' | 'merchant' | 'quest_giver' | 'neutral';
-export type NPCBehavior = 'aggressive' | 'defensive' | 'supportive' | 'random';
+export type NPCBehavior = 'friendly' | 'neutral' | 'hostile';
 
 export interface NPCStats {
     health: number;
@@ -11,58 +10,37 @@ export interface NPCStats {
     defense: number;
 }
 
-export interface NPCProperties {
-    type: NPCType;
+export interface NPCProps extends GameObjectProps {
     behavior: NPCBehavior;
     stats: NPCStats;
     level: number;
-    deck: Card[];
-    tags: string[];
-    gold?: number; // Optional, mainly for merchants or lootable NPCs
+    deck?: Card[];
+    tags?: string[];
+    gold?: number;
 }
 
 /**
  * Represents an NPC in the game
  */
 export class NPC extends GameObject {
-    private readonly _type: NPCType;
-    private readonly _behavior: NPCBehavior;
-    private readonly _stats: NPCStats;
-    private readonly _level: number;
-    private readonly _deck: Card[];
-    private readonly _tags: string[];
-    private readonly _gold: number;
-
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        properties: NPCProperties
-    ) {
-        super(id, name, description);
-        this._type = properties.type;
-        this._behavior = properties.behavior;
-        this._stats = { ...properties.stats };
-        this._level = properties.level;
-        this._deck = [...properties.deck];
-        this._tags = [...properties.tags];
-        this._gold = properties.gold ?? 0;
+    get type(): GameObjectType {
+        return 'npc';
     }
+    private _deck: Card[];
+    private _tags: string[];
+    private _level: number;
+    private _behavior: NPCBehavior;
+    private _stats: NPCStats;
+    private _gold: number;
 
-    get type(): NPCType {
-        return this._type;
-    }
-
-    get behavior(): NPCBehavior {
-        return this._behavior;
-    }
-
-    get stats(): Readonly<NPCStats> {
-        return { ...this._stats };
-    }
-
-    get level(): number {
-        return this._level;
+    constructor(props: NPCProps) {
+        super(props);
+        this._level = props.level;
+        this._behavior = props.behavior;
+        this._stats = props.stats;
+        this._gold = props.gold || 0;
+        this._deck = props.deck || [];
+        this._tags = props.tags || [];
     }
 
     get deck(): readonly Card[] {
@@ -71,6 +49,18 @@ export class NPC extends GameObject {
 
     get tags(): readonly string[] {
         return [...this._tags];
+    }
+
+    get level(): number {
+        return this._level;
+    }
+
+    get behavior(): NPCBehavior {
+        return this._behavior;
+    }
+
+    get stats(): NPCStats {
+        return {...this._stats};
     }
 
     get gold(): number {

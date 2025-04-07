@@ -41,13 +41,13 @@ export class CardFactory extends BaseGameObjectFactory<Card, CardData> {
             tags: data.tags
         };
 
-        return new Card(
-            data.id,
-            data.name,
-            data.description,
-            data.type,
+        return new Card({
+            id: data.id,
+            name: data.name,
+            description: data.description,
+            cardType: data.type,
             properties
-        );
+        });
     }
 
     private validateCardData(data: CardData): void {

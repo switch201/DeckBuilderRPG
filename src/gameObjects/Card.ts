@@ -1,5 +1,5 @@
 import type { Effect } from './Effect';
-import { GameObject } from './GameObject';
+import { GameObject, type GameObjectProps, type GameObjectType } from './GameObject';
 
 export type CardType = 'attack' | 'defense' | 'skill' | 'power';
 
@@ -7,6 +7,11 @@ export interface CardProperties {
     energyCost: number;
     effects: Effect[];
     tags: string[];
+}
+
+export interface CardProps extends GameObjectProps {
+    cardType: CardType;
+    properties: CardProperties;
 }
 
 /**
@@ -18,21 +23,19 @@ export class Card extends GameObject {
     private readonly _effects: Effect[];
     private readonly _tags: string[];
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        type: CardType,
-        properties: CardProperties
-    ) {
-        super(id, name, description);
-        this._type = type;
-        this._energyCost = properties.energyCost;
-        this._effects = [...properties.effects];
-        this._tags = [...properties.tags];
+    constructor(props: CardProps) {
+        super(props);
+        this._type = props.cardType;
+        this._energyCost = props.properties.energyCost;
+        this._effects = [...props.properties.effects];
+        this._tags = [...props.properties.tags];
     }
 
-    get type(): CardType {
+    get type(): GameObjectType {
+        return 'card';
+    }
+
+    get cardType(): CardType {
         return this._type;
     }
 

@@ -2,7 +2,7 @@
     "id": "goblin_warrior",
     "name": "Goblin Warrior",
     "description": "A fierce goblin warrior wielding crude but effective weapons",
-    "type": "enemy",
+    "npcType": "enemy",
     "behavior": "aggressive",
     "stats": {
         "health": 45,

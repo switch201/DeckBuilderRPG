@@ -3,6 +3,7 @@
     "name": "Village Square",
     "description": "A peaceful village square with a central fountain. Benches and flowering plants create a serene atmosphere where villagers gather for guidance.",
     "type": "room",
+    "roomType": "camp",
     "areaId": "tutorial",
     "exits": [
         {

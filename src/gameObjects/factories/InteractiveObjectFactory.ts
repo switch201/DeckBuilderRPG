@@ -37,12 +37,12 @@ export class InteractiveObjectFactory extends BaseGameObjectFactory<InteractiveO
     /**
      * Create an interactive object from JSON data
      */
-    createFromJson(data: unknown): InteractiveObject {
-        if (!isInteractiveObjectData(data)) {
-            throw new Error('Invalid interactive object data');
-        }
-
-        const obj = new InteractiveObject(data.id, data.name, data.description);
+    async createFromJson(data: InteractiveObjectData): Promise<InteractiveObject> {
+        const obj = new InteractiveObject({
+            id: data.id,
+            name: data.name,
+            description: data.description
+        });
         
         // Add any interactions defined in the JSON
         if (data.interactions) {
@@ -58,7 +58,7 @@ export class InteractiveObjectFactory extends BaseGameObjectFactory<InteractiveO
                     execute: handler
                 };
                 
-                obj['addInteraction'](interaction);
+                obj.addInteraction(interaction);
             }
         }
         

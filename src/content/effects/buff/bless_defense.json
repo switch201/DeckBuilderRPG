@@ -1,0 +1,10 @@
+{
+    "id": "bless_defense",
+    "type": "buff",
+    "name": "Blessed Defense",
+    "description": "Increases defense through divine protection",
+    "value": 2,
+    "target": "single",
+    "properties": ["temporary", "stackable"],
+    "tags": ["defense", "buff", "divine"]
+} 

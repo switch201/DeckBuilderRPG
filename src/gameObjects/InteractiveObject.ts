@@ -1,5 +1,7 @@
-import { GameObject } from './GameObject';
+import { GameObject, type GameObjectProps, type GameObjectType } from './GameObject';
 import type { Interaction } from './interactions/Interaction';
+
+export interface InteractiveObjectProps extends GameObjectProps {}
 
 /**
  * Base class for objects that can have custom interactions
@@ -7,9 +9,13 @@ import type { Interaction } from './interactions/Interaction';
 export class InteractiveObject extends GameObject {
     private readonly _interactions: Map<string, Interaction>;
 
-    constructor(id: string, name: string, description: string) {
-        super(id, name, description);
+    constructor(props: InteractiveObjectProps) {
+        super(props);
         this._interactions = new Map();
+    }
+
+    get type(): GameObjectType {
+        return 'interactive';
     }
 
     /**
@@ -51,25 +57,28 @@ export class InteractiveObject extends GameObject {
     }
 }
 
+export interface CollectibleObjectProps extends InteractiveObjectProps {
+    weight: number;
+    value: number;
+}
+
 /**
  * Base class for objects that can be collected by the player
  */
-export abstract class CollectibleObject extends InteractiveObject {
+export class CollectibleObject extends InteractiveObject {
     private _isCollected: boolean;
     private readonly _weight: number;
     private readonly _value: number;
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        weight: number,
-        value: number
-    ) {
-        super(id, name, description);
+    constructor(props: CollectibleObjectProps) {
+        super(props);
         this._isCollected = false;
-        this._weight = weight;
-        this._value = value;
+        this._weight = props.weight;
+        this._value = props.value;
+    }
+
+    get type(): GameObjectType {
+        return 'collectible';
     }
 
     get isCollected(): boolean {
@@ -99,6 +108,10 @@ export abstract class CollectibleObject extends InteractiveObject {
     }
 }
 
+export interface EquippableObjectProps extends CollectibleObjectProps {
+    equipSlot: string;
+}
+
 /**
  * Base class for objects that can be equipped by the player
  */
@@ -106,17 +119,14 @@ export abstract class EquippableObject extends CollectibleObject {
     private _isEquipped: boolean;
     private readonly _equipSlot: string;
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        weight: number,
-        value: number,
-        equipSlot: string
-    ) {
-        super(id, name, description, weight, value);
+    constructor(props: EquippableObjectProps) {
+        super(props);
         this._isEquipped = false;
-        this._equipSlot = equipSlot;
+        this._equipSlot = props.equipSlot;
+    }
+
+    get type(): GameObjectType {
+        return 'equippable';
     }
 
     get isEquipped(): boolean {
@@ -147,20 +157,23 @@ export abstract class EquippableObject extends CollectibleObject {
     abstract getEquipEffects(): Record<string, number>;
 }
 
+export interface SceneryObjectProps extends InteractiveObjectProps {
+    isObstructing?: boolean;
+}
+
 /**
  * Base class for static scenery objects that can't be collected
  */
-export abstract class SceneryObject extends InteractiveObject {
+export class SceneryObject extends InteractiveObject {
     private readonly _isObstructing: boolean;
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        isObstructing: boolean = false
-    ) {
-        super(id, name, description);
-        this._isObstructing = isObstructing;
+    constructor(props: SceneryObjectProps) {
+        super(props);
+        this._isObstructing = props.isObstructing ?? false;
+    }
+
+    get type(): GameObjectType {
+        return 'scenery';
     }
 
     /**

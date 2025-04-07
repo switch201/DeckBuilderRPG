@@ -1,3 +1,14 @@
+export type GameObjectType = 'room' | 'scenery' | 'collectible' | 'interactive' | 'npc' | 'card' | 'effect' | 'equippable';
+
+/**
+ * Properties for creating a GameObject
+ */
+export interface GameObjectProps {
+    id: string;
+    name: string;
+    description: string;
+}
+
 /**
  * Base class for all game objects in the game.
  * Every game object must have a unique ID, name, and description.
@@ -7,10 +18,10 @@ export abstract class GameObject {
     private _name: string;
     private _description: string;
 
-    constructor(id: string, name: string, description: string) {
-        this._id = id;
-        this._name = name;
-        this._description = description;
+    constructor(props: GameObjectProps) {
+        this._id = props.id;
+        this._name = props.name;
+        this._description = props.description;
     }
 
     /**
@@ -41,6 +52,11 @@ export abstract class GameObject {
     set description(value: string) {
         this._description = value;
     }
+
+    /**
+     * Type of the game object
+     */
+    abstract get type(): GameObjectType;
 
     /**
      * Returns a string representation of the game object

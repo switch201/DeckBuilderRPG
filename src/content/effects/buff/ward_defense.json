@@ -1,0 +1,10 @@
+{
+    "id": "ward_defense",
+    "type": "buff",
+    "name": "Defensive Ward",
+    "description": "Creates a magical barrier that absorbs damage",
+    "value": 3,
+    "target": "single",
+    "properties": ["temporary", "magical", "barrier"],
+    "tags": ["defense", "ward", "protective", "magic"]
+} 

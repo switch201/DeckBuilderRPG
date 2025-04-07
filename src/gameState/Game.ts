@@ -128,7 +128,7 @@ export abstract class Game {
             const direction = this.getDirectionBetweenRooms(currentRoom, targetRoom);
             if (!direction) return false;
             
-            const exit = currentRoom.getExit(direction);
+            const exit = currentRoom.allExits.find(e => e.direction === direction);
             if (!exit || exit.isLocked) return false;
         }
 

@@ -1,0 +1,10 @@
+{
+    "id": "bless_strength",
+    "type": "buff",
+    "name": "Blessed Strength",
+    "description": "Increases strength through divine blessing",
+    "value": 2,
+    "target": "single",
+    "properties": ["temporary", "stackable"],
+    "tags": ["strength", "buff", "divine"]
+} 

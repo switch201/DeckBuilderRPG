@@ -3,6 +3,7 @@
     "name": "Dimly Lit Hallway",
     "description": "A long stone hallway stretches before you. Ancient tapestries line the walls, their colors faded with age. The air is cool and still.",
     "type": "room",
+    "roomType": "hallway",
     "areaId": "tutorial",
     "exits": [
         {

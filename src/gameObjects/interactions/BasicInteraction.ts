@@ -1,6 +1,15 @@
 import type { Interaction } from './Interaction';
 
 /**
+ * Properties for creating a BasicInteraction
+ */
+export interface BasicInteractionProps {
+    name: string;
+    description: string;
+    action?: () => void;
+}
+
+/**
  * A simple interaction implementation that can be used with JSON data
  */
 export class BasicInteraction implements Interaction {
@@ -8,10 +17,10 @@ export class BasicInteraction implements Interaction {
     private readonly _description: string;
     private readonly _action: () => void;
 
-    constructor(name: string, description: string, action?: () => void) {
-        this._name = name;
-        this._description = description;
-        this._action = action || (() => console.log(`Executed interaction: ${name}`));
+    constructor(props: BasicInteractionProps) {
+        this._name = props.name;
+        this._description = props.description;
+        this._action = props.action || (() => console.log(`Executed interaction: ${props.name}`));
     }
 
     get name(): string {

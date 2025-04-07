@@ -1,0 +1,10 @@
+{
+    "id": "gain_strength",
+    "type": "buff",
+    "name": "Gain Strength",
+    "description": "Increases strength for more powerful attacks",
+    "value": 2,
+    "target": "single",
+    "properties": ["temporary", "stackable"],
+    "tags": ["strength", "buff"]
+} 

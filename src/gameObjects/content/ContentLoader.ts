@@ -52,7 +52,10 @@ export class ContentLoader {
 
             for (const [key, interactionData] of Object.entries<InteractionData>(data)) {
                 console.log(`Creating interaction: ${key}`, interactionData);
-                const interaction = new BasicInteraction(interactionData.name, interactionData.description);
+                const interaction = new BasicInteraction({
+                    name: interactionData.name,
+                    description: interactionData.description
+                });
                 this._interactions.set(key, interaction);
             }
 

@@ -1,0 +1,10 @@
+{
+    "id": "ward_resistance",
+    "type": "buff",
+    "name": "Resistance Ward",
+    "description": "Provides resistance against magical attacks",
+    "value": 2,
+    "target": "single",
+    "properties": ["temporary", "magical", "resistance"],
+    "tags": ["resistance", "ward", "protective", "magic"]
+} 

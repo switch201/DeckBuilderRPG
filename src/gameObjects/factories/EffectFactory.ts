@@ -1,4 +1,4 @@
-import { Effect } from '../Effect';
+import { Effect, type EffectProps } from '../Effect';
 import type { EffectType, TargetType, EffectProperties } from '../Effect';
 import { BaseGameObjectFactory } from './BaseGameObjectFactory';
 import type { GameObjectData } from './BaseGameObjectFactory';
@@ -26,13 +26,13 @@ export class EffectFactory extends BaseGameObjectFactory<Effect, EffectData> {
             tags: data.tags
         };
 
-        return new Effect(
-            data.id,
-            data.name,
-            data.description,
-            data.type,
+        return new Effect({
+            id: data.id,
+            name: data.name,
+            description: data.description,
+            effectType: data.type,
             properties
-        );
+        });
     }
 
     private validateEffectData(data: EffectData): void {

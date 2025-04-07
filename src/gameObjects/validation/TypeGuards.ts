@@ -1,4 +1,4 @@
-import type { GameObjectData } from '../factories/GameObjectFactory';
+import type { GameObjectData } from '../factories/BaseGameObjectFactory';
 import type { InteractiveObjectData } from '../factories/InteractiveObjectFactory';
 
 /**

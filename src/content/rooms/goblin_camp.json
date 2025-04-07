@@ -3,6 +3,7 @@
     "name": "Goblin Camp",
     "description": "A crude camp with makeshift tents and a smoking fire pit. Weapons and stolen goods are scattered about, and the air smells of roasted meat.",
     "type": "room",
+    "roomType": "camp",
     "areaId": "tutorial",
     "exits": [
         {

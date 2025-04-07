@@ -1,19 +1,18 @@
-import { InteractiveObject } from './InteractiveObject';
+import { InteractiveObject, type InteractiveObjectProps } from './InteractiveObject';
+
+export interface SceneryObjectProps extends InteractiveObjectProps {
+    isObstructing?: boolean;
+}
 
 /**
  * Base class for static scenery objects that can't be collected
  */
-export abstract class SceneryObject extends InteractiveObject {
+export class SceneryObject extends InteractiveObject {
     private readonly _isObstructing: boolean;
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        isObstructing: boolean = false
-    ) {
-        super(id, name, description);
-        this._isObstructing = isObstructing;
+    constructor(props: SceneryObjectProps) {
+        super(props);
+        this._isObstructing = props.isObstructing ?? false;
     }
 
     /**

@@ -3,6 +3,7 @@
     "name": "Market Stall",
     "description": "A small but well-organized market stall, filled with exotic goods and curious trinkets from far-off lands.",
     "type": "room",
+    "roomType": "camp",
     "areaId": "tutorial",
     "exits": [
         {

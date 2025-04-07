@@ -1,24 +1,23 @@
-import { InteractiveObject } from './InteractiveObject';
+import { InteractiveObject, type InteractiveObjectProps } from './InteractiveObject';
+
+export interface CollectibleObjectProps extends InteractiveObjectProps {
+    weight: number;
+    value: number;
+}
 
 /**
  * Base class for objects that can be collected by the player
  */
-export abstract class CollectibleObject extends InteractiveObject {
+export class CollectibleObject extends InteractiveObject {
     private _isCollected: boolean;
     private readonly _weight: number;
     private readonly _value: number;
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        weight: number,
-        value: number
-    ) {
-        super(id, name, description);
+    constructor(props: CollectibleObjectProps) {
+        super(props);
         this._isCollected = false;
-        this._weight = weight;
-        this._value = value;
+        this._weight = props.weight;
+        this._value = props.value;
     }
 
     get isCollected(): boolean {

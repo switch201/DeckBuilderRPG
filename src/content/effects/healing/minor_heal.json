@@ -1,0 +1,10 @@
+{
+    "id": "minor_heal",
+    "name": "Minor Heal",
+    "description": "Restores 3 health points.",
+    "type": "heal",
+    "value": 3,
+    "target": "single",
+    "properties": ["restore_health"],
+    "tags": ["heal", "beneficial"]
+} 

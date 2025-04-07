@@ -1,12 +1,10 @@
-import { NPC } from '../NPC';
-import type { NPCType, NPCBehavior, NPCStats, NPCProperties } from '../NPC';
+import { NPC, type NPCBehavior, type NPCProps, type NPCStats } from '../NPC';
 import { BaseGameObjectFactory } from './BaseGameObjectFactory';
 import type { GameObjectData } from './BaseGameObjectFactory';
 import { CardFactory } from './CardFactory';
 import { ContentLoader } from '../content/ContentLoader';
 
 export interface NPCData extends GameObjectData {
-    type: NPCType;
     behavior: NPCBehavior;
     stats: NPCStats;
     level: number;
@@ -38,28 +36,20 @@ export class NPCFactory extends BaseGameObjectFactory<NPC, NPCData> {
             return this.cardFactory.createFromJson(cardData);
         }));
 
-        const properties: NPCProperties = {
-            type: data.type,
-            behavior: data.behavior,
-            stats: { ...data.stats },
+        return new NPC({
+            id: data.id,
+            name: data.name,
+            description: data.description,
             level: data.level,
-            deck,
-            tags: [...data.tags],
-            gold: data.gold ?? 0 // Convert undefined to 0
-        };
-
-        return new NPC(
-            data.id,
-            data.name,
-            data.description,
-            properties
-        );
+            behavior: data.behavior,
+            stats: data.stats,
+            gold: data.gold ?? 0,
+            deck: deck,
+            tags: data.tags
+        });
     }
 
     private validateNPCData(data: NPCData): void {
-        if (!this.isValidNPCType(data.type)) {
-            throw new Error('NPC data must have a valid type');
-        }
         if (!this.isValidNPCBehavior(data.behavior)) {
             throw new Error('NPC data must have a valid behavior');
         }
@@ -80,12 +70,8 @@ export class NPCFactory extends BaseGameObjectFactory<NPC, NPCData> {
         }
     }
 
-    private isValidNPCType(type: string): type is NPCType {
-        return ['enemy', 'merchant', 'quest_giver', 'neutral'].includes(type);
-    }
-
     private isValidNPCBehavior(behavior: string): behavior is NPCBehavior {
-        return ['aggressive', 'defensive', 'supportive', 'random'].includes(behavior);
+        return ['friendly', 'neutral', 'hostile', 'merchant', 'quest_giver', 'enemy', 'supportive', 'defensive', 'aggressive', 'random'].includes(behavior);
     }
 
     private isValidStats(stats: unknown): stats is NPCStats {

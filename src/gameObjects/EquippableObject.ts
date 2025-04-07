@@ -1,4 +1,8 @@
-import { CollectibleObject } from './CollectibleObject';
+import { CollectibleObject, type CollectibleObjectProps } from './CollectibleObject';
+
+export interface EquippableObjectProps extends CollectibleObjectProps {
+    equipSlot: string;
+}
 
 /**
  * Base class for objects that can be equipped by the player
@@ -7,17 +11,10 @@ export abstract class EquippableObject extends CollectibleObject {
     private _isEquipped: boolean;
     private readonly _equipSlot: string;
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        weight: number,
-        value: number,
-        equipSlot: string
-    ) {
-        super(id, name, description, weight, value);
+    constructor(props: EquippableObjectProps) {
+        super(props);
         this._isEquipped = false;
-        this._equipSlot = equipSlot;
+        this._equipSlot = props.equipSlot;
     }
 
     get isEquipped(): boolean {

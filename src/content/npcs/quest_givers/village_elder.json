@@ -2,7 +2,7 @@
     "id": "village_elder",
     "name": "Village Elder",
     "description": "A wise elder who guides adventurers and provides wisdom",
-    "type": "quest_giver",
+    "npcType": "quest_giver",
     "behavior": "supportive",
     "stats": {
         "health": 25,

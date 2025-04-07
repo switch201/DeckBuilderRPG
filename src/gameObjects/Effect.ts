@@ -1,4 +1,4 @@
-import { GameObject } from './GameObject';
+import { GameObject, type GameObjectProps, type GameObjectType } from './GameObject';
 
 export type EffectType = 'damage' | 'defense' | 'buff' | 'debuff' | 'heal';
 export type TargetType = 'single' | 'all' | 'random' | 'self';
@@ -8,6 +8,11 @@ export interface EffectProperties {
     target: TargetType;
     properties: string[];
     tags: string[];
+}
+
+export interface EffectProps extends GameObjectProps {
+    effectType: EffectType;
+    properties: EffectProperties;
 }
 
 /**
@@ -20,22 +25,20 @@ export class Effect extends GameObject {
     private readonly _properties: string[];
     private readonly _tags: string[];
 
-    constructor(
-        id: string,
-        name: string,
-        description: string,
-        type: EffectType,
-        properties: EffectProperties
-    ) {
-        super(id, name, description);
-        this._type = type;
-        this._value = properties.value;
-        this._target = properties.target;
-        this._properties = [...properties.properties];
-        this._tags = [...properties.tags];
+    constructor(props: EffectProps) {
+        super(props);
+        this._type = props.effectType;
+        this._value = props.properties.value;
+        this._target = props.properties.target;
+        this._properties = [...props.properties.properties];
+        this._tags = [...props.properties.tags];
     }
 
-    get type(): EffectType {
+    get type(): GameObjectType {
+        return 'effect';
+    }
+
+    get effectType(): EffectType {
         return this._type;
     }
 
