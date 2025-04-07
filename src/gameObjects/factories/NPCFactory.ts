@@ -17,6 +17,17 @@ export type NPCData = GameObjectData & {
  * Factory for creating NPCs from JSON data
  */
 export class NPCFactory extends BaseGameObjectFactory<NPC, NPCData> {
+    protected isValidData(data: GameObjectData): data is NPCData {
+        return (
+            'behavior' in data &&
+            'stats' in data &&
+            'level' in data &&
+            'cardIds' in data &&
+            'tags' in data &&
+            Array.isArray(data.cardIds) &&
+            Array.isArray(data.tags)
+        );
+    }
     private readonly cardFactory: CardFactory;
     private readonly contentLoader: ContentLoader;
 
@@ -26,9 +37,10 @@ export class NPCFactory extends BaseGameObjectFactory<NPC, NPCData> {
         this.cardFactory = new CardFactory(contentLoader);
     }
 
-    async createFromJson(data: NPCData): Promise<NPC> {
-        this.validateBaseData(data);
-        this.validateNPCData(data);
+    async createFromJson(data: unknown): Promise<NPC> {
+        if(!this.isValidGameObjectData(data) || !this.isValidData(data)) {
+            throw new Error('Invalid NPC data');
+        }
 
         // Load cards referenced by the NPC
         const deck = await Promise.all(data.cardIds.map(async cardId => {
@@ -47,41 +59,5 @@ export class NPCFactory extends BaseGameObjectFactory<NPC, NPCData> {
             deck: deck,
             tags: data.tags
         });
-    }
-
-    private validateNPCData(data: NPCData): void {
-        if (!this.isValidNPCBehavior(data.behavior)) {
-            throw new Error('NPC data must have a valid behavior');
-        }
-        if (!this.isValidStats(data.stats)) {
-            throw new Error('NPC data must have valid stats');
-        }
-        if (typeof data.level !== 'number' || data.level < 1) {
-            throw new Error('NPC data must have a valid level (>= 1)');
-        }
-        if (!Array.isArray(data.cardIds)) {
-            throw new Error('NPC data must have a cardIds array');
-        }
-        if (!Array.isArray(data.tags)) {
-            throw new Error('NPC data must have a tags array');
-        }
-        if (data.gold !== undefined && typeof data.gold !== 'number') {
-            throw new Error('NPC gold must be a number if specified');
-        }
-    }
-
-    private isValidNPCBehavior(behavior: string): behavior is NPCBehavior {
-        return ['friendly', 'neutral', 'hostile', 'merchant', 'quest_giver', 'enemy', 'supportive', 'defensive', 'aggressive', 'random'].includes(behavior);
-    }
-
-    private isValidStats(stats: unknown): stats is NPCStats {
-        if (!stats || typeof stats !== 'object') return false;
-        const s = stats as NPCStats;
-        return (
-            typeof s.health === 'number' &&
-            typeof s.energy === 'number' &&
-            typeof s.strength === 'number' &&
-            typeof s.defense === 'number'
-        );
     }
 } 

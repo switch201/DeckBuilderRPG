@@ -1,17 +1,14 @@
-import type { Direction, Exit } from '../Room';
 import type { GameObject } from '../GameObject';
 import { Room, type RoomType } from '../Room';
 import { InteractiveObject } from '../InteractiveObject';
-import { CollectibleObject, type CollectibleObjectProps } from '../CollectibleObject';
-import { SceneryObject, type SceneryObjectProps } from '../SceneryObject';
-import { BasicInteraction } from '../interactions/BasicInteraction';
+import { CollectibleObject } from '../CollectibleObject';
+import { SceneryObject } from '../SceneryObject';
 import { ContentLoader } from '../content/ContentLoader';
 import { NPC } from '../NPC';
 import { NPCFactory } from './NPCFactory';
 import type { NPCData } from './NPCFactory';
 import type { GameObjectData } from './BaseGameObjectFactory';
 import { BaseGameObjectFactory } from './BaseGameObjectFactory';
-import type { Interaction } from '../interactions/Interaction';
 
 /**
  * Type for room JSON data
@@ -59,16 +56,22 @@ export type ObjectData = GameObjectData & {
  * Factory for creating rooms
  */
 export class RoomFactory extends BaseGameObjectFactory<Room, RoomData> {
-    protected validateRoomData(data: RoomData): void {
-        if (!data.roomType) throw new Error('Room data must have a roomType');
+
+
+    protected isValidData(data: GameObjectData): data is RoomData {
+        return (
+            'areaId' in data &&
+            'exits' in data &&
+            'objects' in data &&
+            'npcs' in data &&
+            'roomType' in data
+        );
     }
 
-    async createFromJson(data: RoomData): Promise<Room> {
-        this.validateBaseData(data);
-        this.validateRoomData(data);
-        if (!data.areaId) throw new Error('Room data must have an areaId');
-        if (!Array.isArray(data.exits)) throw new Error('Room data must have exits array');
-        if (!Array.isArray(data.objects)) throw new Error('Room data must have objects array');
+    async createFromJson(data: unknown): Promise<Room> {
+        if(!this.isValidGameObjectData(data) || !this.isValidData(data)) {
+            throw new Error('Invalid room data');
+        }
 
         console.log(`Creating room: ${data.id} with objects:`, data.objects);
 
@@ -106,8 +109,21 @@ export class ObjectFactory extends BaseGameObjectFactory<GameObject, ObjectData>
         this.contentLoader = contentLoader;
     }
 
-    async createFromJson(data: ObjectData): Promise<GameObject> {
-        this.validateBaseData(data);
+    protected isValidData(data: GameObjectData): data is ObjectData {
+        return (
+            'type' in data &&
+            'weight' in data &&
+            'value' in data &&
+            'isObstructing' in data &&  
+            'interactionIds' in data
+        );
+    }
+
+    async createFromJson(data: unknown): Promise<GameObject> {
+        if(!this.isValidGameObjectData(data) || !this.isValidData(data)) {
+            throw new Error('Invalid object data');
+        }
+
         console.log(`Creating object: ${data.id} of type: ${data.type}`);
 
         let object: GameObject;
@@ -206,7 +222,7 @@ export class GameContentManager {
                 throw new Error(`Failed to load room: ${roomId} (${response.status} ${response.statusText})`);
             }
 
-            const data = await response.json() as RoomData;
+            const data = await response.json() as unknown;
             if (!this.isValidRoomData(data)) {
                 throw new Error(`Invalid room data format for room: ${roomId}`);
             }

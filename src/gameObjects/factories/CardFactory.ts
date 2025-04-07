@@ -16,6 +16,9 @@ export type CardData = GameObjectData & {
  * Factory for creating cards from JSON data
  */
 export class CardFactory extends BaseGameObjectFactory<Card, CardData> {
+    protected isValidData(data: GameObjectData): data is CardData {
+        throw new Error('Method not implemented.');
+    }
     private readonly effectFactory: EffectFactory;
     private readonly contentLoader: ContentLoader;
 
@@ -25,9 +28,10 @@ export class CardFactory extends BaseGameObjectFactory<Card, CardData> {
         this.effectFactory = new EffectFactory();
     }
 
-    async createFromJson(data: CardData): Promise<Card> {
-        this.validateBaseData(data);
-        this.validateCardData(data);
+    async createFromJson(data: unknown): Promise<Card> {
+        if(!this.isValidGameObjectData(data) || !this.isValidData(data)) {
+            throw new Error('Invalid card data');
+        }
 
         // Load effects referenced by the card
         const effects = await Promise.all(data.effectIds.map(async effectId => {

@@ -14,13 +14,11 @@ type InteractionData = {
  */
 export class ContentLoader {
     private readonly _interactions: Map<string, Interaction>;
-    private readonly _gameObjects: Map<string, GameObjectData>;
     private readonly contentBasePath: string;
     private _isLoaded: boolean = false;
 
     constructor(contentBasePath: string = 'src/content') {
         this._interactions = new Map();
-        this._gameObjects = new Map();
         this.contentBasePath = contentBasePath;
         
         // Load interactions immediately
@@ -68,36 +66,6 @@ export class ContentLoader {
     }
 
     /**
-     * Load all content from the Content directory
-     */
-    async loadAllContent(): Promise<void> {
-        // Load all game objects
-        await this.loadGameObjects();
-    }
-
-    /**
-     * Load all game objects from their respective directories
-     */
-    private async loadGameObjects(): Promise<void> {
-        const directories = ['rooms', 'scenery', 'items', 'npcs'];
-        
-        for (const dir of directories) {
-            const files = await this.getJsonFilesInDirectory(`Content/${dir}`);
-            for (const file of files) {
-                const data = await this.loadJsonFile<GameObjectData>(file);
-                this._gameObjects.set(data.id, data);
-            }
-        }
-    }
-
-    /**
-     * Get a game object by ID
-     */
-    getGameObject(id: string): GameObjectData | undefined {
-        return this._gameObjects.get(id);
-    }
-
-    /**
      * Resolve interaction references to actual interaction objects
      */
     resolveInteractions(interactionIds: string[]): Interaction[] {
@@ -109,61 +77,6 @@ export class ContentLoader {
             }
             return interaction;
         });
-    }
-
-    /**
-     * Load a JSON file
-     */
-    private async loadJsonFile<T>(path: string): Promise<T> {
-        const response = await fetch(path);
-        if (!response.ok) {
-            throw new Error(`Failed to load ${path}: ${response.statusText}`);
-        }
-        return response.json();
-    }
-
-    /**
-     * Get all JSON files in a directory
-     */
-    private async getJsonFilesInDirectory(path: string): Promise<string[]> {
-        try {
-            // Browser environments can't list directory contents directly
-            // Instead, we'll use a hardcoded list of known files based on directory path
-            const knownFiles: Record<string, string[]> = {
-                'cards/skill': ['basic_trade.json', 'basic_heal.json', 'inspire.json', 'healing_word.json', 'dodge.json', 'quick_escape.json', 'smoke_bomb.json'],
-                'cards/power': ['basic_power.json', 'protective_ward.json', 'bless.json', 'goblin_rage.json'],
-                'cards/weapon': ['basic_weapon.json', 'cut.json', 'stab.json', 'parry.json'],
-                'effects/interaction': ['trade_effect.json'],
-                'effects/healing': ['heal_effect.json', 'regenerate_effect.json'],
-                'effects/buff': ['strength_effect.json', 'dexterity_effect.json', 'gain_evasion.json'],
-                'effects/damage': ['fire_damage.json', 'physical_damage.json'],
-                'effects/defense': ['shield_effect.json', 'armor_effect.json', 'block.json', 'counter.json', 'smoke_cloud.json']
-            };
-
-            // If we have a predefined list for this path, use it
-            if (knownFiles[path]) {
-                return knownFiles[path].map(file => `${this.contentBasePath}/${path}/${file}`);
-            }
-
-            // Try fetching a manifest file that lists contents for this directory
-            try {
-                const manifestPath = `${this.contentBasePath}/${path}/manifest.json`;
-                const response = await fetch(manifestPath);
-                if (response.ok) {
-                    const manifest = await response.json() as string[];
-                    return manifest.map(file => `${this.contentBasePath}/${path}/${file}`);
-                }
-            } catch (manifestError) {
-                console.warn(`No manifest found for ${path}`);
-            }
-
-            // If no known files or manifest, try a direct request for a specific file
-            // This assumes the file is being requested by name later in the code
-            return [];
-        } catch (error) {
-            console.error(`Failed to list files in ${path}:`, error);
-            return [];
-        }
     }
 
     /**
@@ -275,7 +188,7 @@ export class ContentLoader {
 
         // Check if we already know this effect's type
         if (knownEffectTypes[effectId]) {
-            return knownEffectTypes[effectId];
+            return knownEffectTypes[effectId] ?? 'interaction';
         }
 
         // 2. Try to infer from naming convention
@@ -359,7 +272,7 @@ export class ContentLoader {
 
         // First check our known card mappings
         if (knownCardTypes[cardId]) {
-            return knownCardTypes[cardId];
+            return knownCardTypes[cardId] ?? 'skill';
         }
         
         // Fall back to checking the card directories

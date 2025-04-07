@@ -20,6 +20,12 @@ export type InteractiveObjectData = GameObjectData & {
  * Factory for creating interactive objects from JSON data
  */
 export class InteractiveObjectFactory extends BaseGameObjectFactory<InteractiveObject, InteractiveObjectData> {
+    protected isValidData(data: GameObjectData): data is InteractiveObjectData {
+        return (
+            'interactions' in data &&
+            Array.isArray(data.interactions)
+        );
+    }
     private readonly _interactionHandlers: Map<string, () => void>;
 
     constructor() {
@@ -37,7 +43,11 @@ export class InteractiveObjectFactory extends BaseGameObjectFactory<InteractiveO
     /**
      * Create an interactive object from JSON data
      */
-    async createFromJson(data: InteractiveObjectData): Promise<InteractiveObject> {
+    async createFromJson(data: unknown): Promise<InteractiveObject> {
+        if(!this.isValidGameObjectData(data) || !this.isValidData(data)) {
+            throw new Error('Invalid interactive object data');
+        }
+
         const obj = new InteractiveObject({
             id: data.id,
             name: data.name,

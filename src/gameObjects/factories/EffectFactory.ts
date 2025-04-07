@@ -1,5 +1,4 @@
-import { Effect, type EffectProps } from '../Effect';
-import type { EffectType, TargetType, EffectProperties } from '../Effect';
+import { Effect, type EffectProps, type EffectType, type TargetType } from '../Effect';
 import { BaseGameObjectFactory } from './BaseGameObjectFactory';
 import type { GameObjectData } from './BaseGameObjectFactory';
 
@@ -15,42 +14,40 @@ export type EffectData = GameObjectData & {
  * Factory for creating effects from JSON data
  */
 export class EffectFactory extends BaseGameObjectFactory<Effect, EffectData> {
-    async createFromJson(data: EffectData): Promise<Effect> {
-        this.validateBaseData(data);
-        this.validateEffectData(data);
+    protected isValidData(data: GameObjectData): data is EffectData {
+        return (
+            'type' in data &&
+            'value' in data &&
+            'target' in data &&
+            'properties' in data &&
+            'tags' in data
+        );
+    }
 
-        const properties: EffectProperties = {
-            value: data.value,
-            target: data.target,
-            properties: data.properties,
-            tags: data.tags
-        };
+    private isValidEffectType(type: unknown): type is EffectType {
+        return typeof type === 'string' && ['damage', 'defense', 'buff', 'debuff', 'heal'].includes(type);
+    }
+
+    private isValidTargetType(target: unknown): target is TargetType {
+        return typeof target === 'string' && ['single', 'all', 'random', 'self'].includes(target);
+    }
+
+    async createFromJson(data: unknown): Promise<Effect> {
+        if (!this.isValidGameObjectData(data) || !this.isValidData(data)) {
+            throw new Error('Invalid effect data');
+        }
 
         return new Effect({
             id: data.id,
             name: data.name,
             description: data.description,
             effectType: data.type,
-            properties
+            properties: {
+                value: data.value,
+                target: data.target,
+                properties: data.properties,
+                tags: data.tags
+            }
         });
-    }
-
-    private validateEffectData(data: EffectData): void {
-        if (typeof data.value !== 'number') {
-            throw new Error('Effect data must have a numeric value');
-        }
-        if (!this.isValidTargetType(data.target)) {
-            throw new Error('Effect data must have a valid target type');
-        }
-        if (!Array.isArray(data.properties)) {
-            throw new Error('Effect data must have a properties array');
-        }
-        if (!Array.isArray(data.tags)) {
-            throw new Error('Effect data must have a tags array');
-        }
-    }
-
-    private isValidTargetType(target: string): target is TargetType {
-        return ['single', 'all', 'random', 'self'].includes(target);
     }
 } 
