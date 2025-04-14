@@ -16,7 +16,7 @@ export type CardData = GameObjectData & {
  * Factory for creating cards from JSON data
  */
 export class CardFactory extends BaseGameObjectFactory<Card, CardData> {
-    protected isValidData(data: GameObjectData): data is CardData {
+    isValidData(data: GameObjectData): data is CardData {
         throw new Error('Method not implemented.');
     }
     private readonly effectFactory: EffectFactory;
@@ -52,25 +52,6 @@ export class CardFactory extends BaseGameObjectFactory<Card, CardData> {
             cardType: data.type,
             properties
         });
-    }
-
-    private validateCardData(data: CardData): void {
-        if (typeof data.energyCost !== 'number' || data.energyCost < 0) {
-            throw new Error('Card data must have a valid energyCost (>= 0)');
-        }
-        if (!Array.isArray(data.effectIds)) {
-            throw new Error('Card data must have an effectIds array');
-        }
-        if (!Array.isArray(data.tags)) {
-            throw new Error('Card data must have a tags array');
-        }
-        if (!this.isValidCardType(data.type)) {
-            throw new Error('Card data must have a valid type');
-        }
-    }
-
-    private isValidCardType(type: string): type is CardType {
-        return ['attack', 'defense', 'skill', 'power'].includes(type);
     }
 
     /**

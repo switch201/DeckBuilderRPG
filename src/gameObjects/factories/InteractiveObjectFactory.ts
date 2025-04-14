@@ -20,7 +20,7 @@ export type InteractiveObjectData = GameObjectData & {
  * Factory for creating interactive objects from JSON data
  */
 export class InteractiveObjectFactory extends BaseGameObjectFactory<InteractiveObject, InteractiveObjectData> {
-    protected isValidData(data: GameObjectData): data is InteractiveObjectData {
+    isValidData(data: GameObjectData): data is InteractiveObjectData {
         return (
             'interactions' in data &&
             Array.isArray(data.interactions)

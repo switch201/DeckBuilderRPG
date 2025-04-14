@@ -14,7 +14,7 @@ export type EffectData = GameObjectData & {
  * Factory for creating effects from JSON data
  */
 export class EffectFactory extends BaseGameObjectFactory<Effect, EffectData> {
-    protected isValidData(data: GameObjectData): data is EffectData {
+    isValidData(data: GameObjectData): data is EffectData {
         return (
             'type' in data &&
             'value' in data &&

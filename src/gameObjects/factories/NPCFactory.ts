@@ -17,7 +17,7 @@ export type NPCData = GameObjectData & {
  * Factory for creating NPCs from JSON data
  */
 export class NPCFactory extends BaseGameObjectFactory<NPC, NPCData> {
-    protected isValidData(data: GameObjectData): data is NPCData {
+    isValidData(data: GameObjectData): data is NPCData {
         return (
             'behavior' in data &&
             'stats' in data &&

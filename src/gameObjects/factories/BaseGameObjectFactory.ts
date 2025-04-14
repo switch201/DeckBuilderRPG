@@ -23,7 +23,7 @@ export abstract class BaseGameObjectFactory<T extends GameObject, D extends Game
      * Type guard that checks if the data matches the specific derived type
      * Implement this in derived classes to add additional type checks
      */
-    protected abstract isValidData(data: GameObjectData): data is D;
+    abstract isValidData(data: GameObjectData): data is D;
 
     /**
      * Type guard that checks if the data has all required base fields and then checks specific type
